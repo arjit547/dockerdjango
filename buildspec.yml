@@ -12,16 +12,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t djangodemo .
-      - docker tag djangodemo:latest 839353020711.dkr.ecr.us-east-1.amazonaws.com/djangodemo:latest    
+      - docker build -t hello .
+      - docker tag hello:latest 839353020711.dkr.ecr.us-east-1.amazonaws.com/hello:latest  
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 839353020711.dkr.ecr.us-east-1.amazonaws.com/djangodemo:latest
+      - docker push 839353020711.dkr.ecr.us-east-1.amazonaws.com/hello:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"djangocont","imageUri":"839353020711.dkr.ecr.us-east-1.amazonaws.com/djangodemo:latest"}]' 839353020711.dkr.ecr.us-east-1.amazonaws.com/djangodemo:latest > imagedefinitions.json
+      - printf '[{"name":"hellocont","imageUri":"839353020711.dkr.ecr.us-east-1.amazonaws.com/hello:latest"}]' 839353020711.dkr.ecr.us-east-1.amazonaws.com/hello:latest  > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
-    
    
