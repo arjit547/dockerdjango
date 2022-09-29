@@ -24,5 +24,4 @@ phases:
 artifacts:
     files: imagedefinitions.json
     
-    #djangocont- container name
-    #djangodemo - respo name
+   
