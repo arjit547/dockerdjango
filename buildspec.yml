@@ -6,21 +6,21 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin *********.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 839353020711.dkr.ecr.us-east-1.amazonaws.com
       
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t hello .
-      - docker tag hello:latest ***********.dkr.ecr.us-east-1.amazonaws.com/hello:latest  
+      - docker build -t retest .
+      - docker tag retest:latest 839353020711.dkr.ecr.us-east-1.amazonaws.com/retest:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 839353020711.dkr.ecr.us-east-1.amazonaws.com/hello:latest
+      - docker push 839353020711.dkr.ecr.us-east-1.amazonaws.com/retest:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"hellocont","imageUri":"*********.dkr.ecr.us-east-1.amazonaws.com/hello:latest"}]' **********.dkr.ecr.us-east-1.amazonaws.com/hello:latest  > imagedefinitions.json
+      - printf '[{"name":"django-container","imageUri":"839353020711.dkr.ecr.us-east-1.amazonaws.com/retest:latest"}]' 839353020711.dkr.ecr.us-east-1.amazonaws.com/retest:latest  > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
    
